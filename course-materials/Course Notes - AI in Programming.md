@@ -259,6 +259,10 @@ Notes from course for JSystem — AI dla programistów: od pomysłu do MVP
 	- architecture details (Tauri): [Code Wiki](https://codewiki.google/github.com/cjpais/handy)
 - Claude Code - for multi-step tasks, leading in innovation, and access to best models on discounted prices (especially on Max plan)
   - Desktop & Mobile apps with Code Agent in the cloud! [Claude Desktop App](https://code.claude.com/docs/en/desktop)
+  - ⚠️ **Anthropic API / Claude Code availability** — in the last months, uptime has sometimes dropped below 99% for 90 day window. When you see below API errors, check [status.claude.com](https://status.claude.com/):
+    - `● API Error: 529 Overloaded` — server-side overload, usually temporary — try again in a moment
+    - `● API Error: 500 Internal server error` — server-side issue, usually temporary — try again in a moment
+    - If either persists, check https://status.claude.com
 - Codex - for very high limits, best models for hard work (not as good as Opus in architecture, but great for development and more focused), good cloud agents with GitHub integration.
 - Zed.ai - to use any AI tool/Provider you wont, Open Source, Rust (fast)
 - Cursor - for best autocomplete and cloud agents, RAG on any docs
