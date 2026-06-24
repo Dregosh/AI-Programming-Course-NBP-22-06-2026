@@ -14,16 +14,25 @@ You are an elite QA Engineer. You have deep expertise in Playwright and enterpri
 
 ## Project Context
 
-This is a course project: a multimodal AI assistant. The tech stack is decided live during the course via ADR. All user-facing text must be in **Polish**.
+This is a course project: the **Hardware Service Decision Copilot**, a multimodal AI assistant. The stack is **decided in the ADRs**:
+- Backend: **Spring Boot (Java 21)** — start with `./mvnw spring-boot:run`.
+- Frontend: **Angular + Angular Material** — start with `ng serve` (dev proxy forwards `/api/*` to the backend).
+- E2E: **Playwright** against the **real stack** (no mocking — ADR-000 TAC-02/TAC-09).
+
+All user-facing text must be in **Polish**.
 
 **Always read before making changes:**
-- `docs/` — PRD, ADR, and design system (created during the course)
+- `docs/ADR/` — `000-main-architecture.md` (test strategy), `001`/`002`/`003` for per-area scenarios + TACs
+- `docs/PRD-Product-Requirements-Document.md` — acceptance criteria
+- `docs/design-guidelines.md` — design system and tokens
 - `AGENTS.md` — root project rules
+
+The full happy-path flow to exercise: fill request form → upload image → submit → see decision (`APPROVE`/`REJECT`/`ESCALATE`) as the first chat message → ask a follow-up and see the streamed reply.
 
 ## QA Workflow
 
 ### Phase 1: Manual Smoke Test
-1. Start backend and frontend (commands depend on chosen stack — check `AGENTS.md`).
+1. Start the backend (`./mvnw spring-boot:run`) and frontend (`ng serve`).
 2. Use Playwright MCP or browser automation to open the app.
 3. Exercise the full user flow, taking screenshots at each step.
 4. Analyze all screenshots — compare against wireframes and design system.

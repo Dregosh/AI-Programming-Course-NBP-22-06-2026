@@ -220,4 +220,4 @@ sequenceDiagram
 - **TAC-003-05:** On `502`/`503`, the app shows a retry message, preserves all entered values, and shows no decision.
 - **TAC-003-06:** The chat consumes the SSE stream via `fetch`, renders deltas incrementally, disables input while streaming, and finalizes on `done`.
 - **TAC-003-07:** A mid-stream `error` event surfaces an inline retry without losing prior history.
-- **TAC-003-08:** All UI text is in English.
+- **TAC-003-08:** All UI text is in Polish.

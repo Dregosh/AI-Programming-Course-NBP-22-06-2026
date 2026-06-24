@@ -1,57 +1,57 @@
-# Complaint Policy (Example Starter Document)
+# Polityka reklamacji (przykładowy dokument startowy)
 
-> **Status:** Example seed document for the Hardware Service Decision Copilot MVP.
-> Encodes the rules the decision agent must apply for **COMPLAINT** (fault) requests.
-> Replace with the real company policy before any production use.
+> **Status:** Przykładowy dokument źródłowy dla MVP Hardware Service Decision Copilot.
+> Koduje reguły, które agent decyzyjny musi stosować dla wniosków typu **COMPLAINT** (reklamacja / wada).
+> Przed jakimkolwiek użyciem produkcyjnym należy go zastąpić rzeczywistą polityką firmy.
 
 ---
 
-## 1. Scope
+## 1. Zakres
 
-This policy governs **complaints** where the customer reports that an item is **faulty,
-defective, or damaged** and seeks repair, replacement, or refund under warranty.
-Voluntary no-fault returns are handled by the separate **Return Policy**.
+Niniejsza polityka reguluje **reklamacje**, w których klient zgłasza, że produkt jest **wadliwy,
+uszkodzony lub niesprawny** i ubiega się o naprawę, wymianę lub zwrot pieniędzy w ramach gwarancji.
+Dobrowolne zwroty bez wady obsługiwane są przez odrębną **Politykę zwrotów**.
 
-## 2. Eligibility Window
+## 2. Okno uprawniające do reklamacji
 
-- Complaints are accepted within **24 months** of the purchase date (standard warranty period).
-- Requests after day 730 are **not eligible** and must be REJECTED.
-- If the purchase date is missing or in the future, the case must be ESCALATED.
+- Reklamacje są przyjmowane w ciągu **24 miesięcy** od daty zakupu (standardowy okres gwarancji).
+- Wnioski po 730. dniu są **nieuprawnione** i muszą zostać odrzucone (REJECT).
+- Jeśli data zakupu jest brakująca lub przyszła, sprawę należy eskalować (ESCALATE).
 
-## 3. Covered vs Not Covered
+## 3. Objęte vs nieobjęte gwarancją
 
-### Covered (defect — eligible for APPROVE)
-- Manufacturing defects: dead pixels, battery failure, component failure, firmware faults.
-- Damage that occurred without external impact and is consistent with a material/build fault.
-- Functional failure under normal, intended use.
+### Objęte (wada — kwalifikuje się do APPROVE)
+- Wady produkcyjne: martwe piksele, awaria baterii, awaria podzespołów, błędy oprogramowania układowego.
+- Uszkodzenia powstałe bez zewnętrznego uderzenia, zgodne z wadą materiałową/wykonania.
+- Awaria funkcjonalna podczas normalnego, zgodnego z przeznaczeniem użytkowania.
 
-### Not Covered (customer-induced — eligible for REJECT)
-- **Physical/impact damage**: cracked screen, dents, bent frame, broken ports from drops or pressure.
-- **Liquid damage**: corrosion, water ingress marks, moisture indicators triggered.
-- **Misuse / unauthorized repair**: third-party tampering, opened casing, non-approved parts.
-- **Normal wear and tear**: cosmetic scuffs that do not affect function.
+### Nieobjęte (z winy klienta — kwalifikuje się do REJECT)
+- **Uszkodzenia fizyczne / mechaniczne**: pęknięty ekran, wgniecenia, wygięta ramka, uszkodzone porty wskutek upadków lub nacisku.
+- **Uszkodzenia od cieczy**: korozja, ślady zalania, uruchomione wskaźniki wilgoci.
+- **Niewłaściwe użytkowanie / nieautoryzowana naprawa**: ingerencja osób trzecich, otwarta obudowa, niezatwierdzone części.
+- **Normalne zużycie eksploatacyjne**: kosmetyczne otarcia niewpływające na działanie.
 
-## 4. Evidence Assessment
+## 4. Ocena dowodów
 
-The image is the primary evidence. The agent must judge:
+Zdjęcie jest podstawowym dowodem. Agent musi ocenić:
 
-1. **Is the item damaged, and how?** (type and location of damage)
-2. **What is the most probable cause?** (manufacturing defect vs impact/liquid/misuse)
-3. **Is that cause covered** under section 3?
+1. **Czy produkt jest uszkodzony i w jaki sposób?** (rodzaj i lokalizacja uszkodzenia)
+2. **Jaka jest najbardziej prawdopodobna przyczyna?** (wada produkcyjna vs uderzenie/ciecz/niewłaściwe użytkowanie)
+3. **Czy ta przyczyna jest objęta** zgodnie z sekcją 3?
 
-The stated **reason for complaint** (mandatory text from the customer) must be weighed against
-the visual evidence. If the stated reason contradicts the image, ESCALATE.
+Podany **powód reklamacji** (obowiązkowy tekst od klienta) musi zostać zestawiony z
+dowodami wizualnymi. Jeśli podany powód jest sprzeczny ze zdjęciem, należy eskalować (ESCALATE).
 
-## 5. Decision Mapping
+## 5. Mapowanie decyzji
 
-| Outcome | Condition |
+| Wynik | Warunek |
 |---|---|
-| **APPROVE** | Within warranty window **and** damage/fault is consistent with a covered defect. |
-| **REJECT** | Outside window, **or** damage is clearly customer-induced (impact/liquid/misuse/wear). |
-| **ESCALATE** | Cause is ambiguous, image inconclusive/blurry/wrong item, stated reason contradicts the image, or date missing/invalid. |
+| **APPROVE** | W oknie gwarancyjnym **oraz** uszkodzenie/wada jest zgodne z wadą objętą gwarancją. |
+| **REJECT** | Poza oknem, **lub** uszkodzenie jest wyraźnie z winy klienta (uderzenie/ciecz/niewłaściwe użytkowanie/zużycie). |
+| **ESCALATE** | Przyczyna niejednoznaczna, zdjęcie niejednoznaczne/rozmyte/niewłaściwy przedmiot, podany powód sprzeczny ze zdjęciem albo data brakująca/nieprawidłowa. |
 
-## 6. Required Customer Disclosures
+## 6. Wymagane informacje dla klienta
 
-- An **APPROVE** outcome confirms the complaint is accepted and the service process begins.
-- A **REJECT** or **ESCALATE** outcome is **preliminary** and is reviewed by a human specialist
-  before becoming final.
+- Wynik **APPROVE** potwierdza przyjęcie reklamacji i rozpoczęcie procesu serwisowego.
+- Wynik **REJECT** lub **ESCALATE** jest **wstępny** i podlega weryfikacji przez specjalistę
+  przed uznaniem go za ostateczny.

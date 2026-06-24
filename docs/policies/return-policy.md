@@ -1,52 +1,52 @@
-# Return Policy (Example Starter Document)
+# Polityka zwrotów (przykładowy dokument startowy)
 
-> **Status:** Example seed document for the Hardware Service Decision Copilot MVP.
-> Encodes the rules the decision agent must apply for **RETURN** requests.
-> Replace with the real company policy before any production use.
+> **Status:** Przykładowy dokument źródłowy dla MVP Hardware Service Decision Copilot.
+> Koduje reguły, które agent decyzyjny musi stosować dla wniosków typu **RETURN** (zwrot).
+> Przed jakimkolwiek użyciem produkcyjnym należy go zastąpić rzeczywistą polityką firmy.
 
 ---
 
-## 1. Scope
+## 1. Zakres
 
-This policy governs **voluntary returns** of electronics purchased from the company,
-where the customer wishes to send the item back for a refund **without claiming a fault**.
-Fault-based claims are handled by the separate **Complaint Policy**.
+Niniejsza polityka reguluje **dobrowolne zwroty** elektroniki zakupionej w firmie,
+gdy klient chce odesłać produkt w celu uzyskania zwrotu pieniędzy **bez zgłaszania wady**.
+Roszczenia z tytułu wad obsługiwane są przez odrębną **Politykę reklamacji**.
 
-## 2. Eligibility Window
+## 2. Okno uprawniające do zwrotu
 
-- Returns are accepted within **30 calendar days** of the purchase date.
-- Requests submitted after day 30 are **not eligible** and must be REJECTED.
-- If the purchase date is missing or in the future, the case must be ESCALATED.
+- Zwroty są przyjmowane w ciągu **30 dni kalendarzowych** od daty zakupu.
+- Wnioski złożone po 30. dniu są **nieuprawnione** i muszą zostać odrzucone (REJECT).
+- Jeśli data zakupu jest brakująca lub przyszła, sprawę należy eskalować (ESCALATE).
 
-## 3. Condition Requirements (Resalable Standard)
+## 3. Wymagania dotyczące stanu (standard odsprzedaży)
 
-A returned item qualifies for refund **only if it can be resold as new**. The item must show:
+Zwrócony produkt kwalifikuje się do zwrotu pieniędzy **tylko wtedy, gdy może zostać ponownie sprzedany jako nowy**. Produkt musi wykazywać:
 
-- **No signs of use**: no scratches, scuffs, wear marks, fingerprints, dust ingress, or residue.
-- **No physical damage**: no cracks, dents, bent parts, broken ports, or cosmetic defects.
-- **No modification**: no third-party stickers, engravings, or altered components.
-- Original condition consistent with an unopened or as-new product.
+- **Brak śladów użytkowania**: bez zarysowań, otarć, śladów zużycia, odcisków palców, wnikającego kurzu czy zabrudzeń.
+- **Brak uszkodzeń fizycznych**: bez pęknięć, wgnieceń, wygiętych elementów, uszkodzonych portów czy wad kosmetycznych.
+- **Brak modyfikacji**: bez naklejek innych firm, grawerów czy wymienionych podzespołów.
+- Stan oryginalny, odpowiadający produktowi nieotwartemu lub jak nowy.
 
-If the image shows **any** sign of use or damage, the return does **not** meet the resalable
-standard and must be REJECTED (the customer may instead file a complaint if a fault exists).
+Jeśli zdjęcie wykazuje **jakikolwiek** ślad użytkowania lub uszkodzenia, zwrot **nie** spełnia
+standardu odsprzedaży i musi zostać odrzucony (REJECT) (klient może zamiast tego złożyć reklamację, jeśli występuje wada).
 
-## 4. Category Notes
+## 4. Uwagi dotyczące kategorii
 
-- **Smartphone / Tablet / Laptop / Smartwatch**: screens and bodies must be free of scratches;
-  no activation locks or personal accounts left signed in.
-- **Headphones**: ear tips / cushions must be unused for hygiene reasons.
-- Hygiene-sensitive accessories that show use are **not** returnable.
+- **Smartfon / Tablet / Laptop / Smartwatch**: ekrany i obudowy muszą być wolne od zarysowań;
+  brak blokad aktywacyjnych i zalogowanych kont osobistych.
+- **Słuchawki**: wkładki douszne / nausznice muszą być nieużywane ze względów higienicznych.
+- Akcesoria wrażliwe higienicznie noszące ślady użytkowania **nie** podlegają zwrotowi.
 
-## 5. Decision Mapping
+## 5. Mapowanie decyzji
 
-| Outcome | Condition |
+| Wynik | Warunek |
 |---|---|
-| **APPROVE** | Within 30-day window **and** image shows no signs of use or damage (resalable). |
-| **REJECT** | Outside window, **or** image shows any use/damage, **or** category-specific hygiene rule fails. |
-| **ESCALATE** | Image inconclusive/blurry/wrong item, purchase date missing or invalid, or evidence is contradictory. |
+| **APPROVE** | W oknie 30 dni **oraz** zdjęcie nie wykazuje śladów użytkowania ani uszkodzeń (nadaje się do odsprzedaży). |
+| **REJECT** | Poza oknem, **lub** zdjęcie wykazuje jakiekolwiek użytkowanie/uszkodzenie, **lub** niespełniona reguła higieniczna dla kategorii. |
+| **ESCALATE** | Zdjęcie niejednoznaczne/rozmyte/niewłaściwy przedmiot, data zakupu brakująca lub nieprawidłowa, albo dowody są sprzeczne. |
 
-## 6. Required Customer Disclosures
+## 6. Wymagane informacje dla klienta
 
-- An **APPROVE** outcome confirms the return is accepted and a refund will be processed.
-- A **REJECT** or **ESCALATE** outcome is **preliminary** and is reviewed by a human specialist
-  before becoming final.
+- Wynik **APPROVE** potwierdza przyjęcie zwrotu i rozpoczęcie procesu zwrotu pieniędzy.
+- Wynik **REJECT** lub **ESCALATE** jest **wstępny** i podlega weryfikacji przez specjalistę
+  przed uznaniem go za ostateczny.

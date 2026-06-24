@@ -144,7 +144,7 @@ by them. Their tooling is out of scope for this MVP.
 ### General / Error Handling
 - **AC-26** On multimodal or agent failure (error or timeout), the app shows a retry message, preserves all form input, and does not display any decision.
 - **AC-27** While analysis is in progress, the app shows a loading state and prevents duplicate submissions.
-- **AC-28** All user-facing text is in English.
+- **AC-28** All user-facing text is in Polish.
 
 ---
 
@@ -158,7 +158,7 @@ by them. Their tooling is out of scope for this MVP.
 - **Multiple images / video** — exactly one image; no video, no multi-photo galleries.
 - **Notifications** — no email, SMS, or push updates on case status.
 - **Payments / refunds execution** — the system states a decision; it does not move money or create RMAs.
-- **Multilingual support** — English only; no localization.
+- **Multilingual support** — Polish only; no localization.
 - **Mobile apps** — responsive web is acceptable; no native iOS/Android apps.
 - **Editing a submitted request** — once submitted, the case is fixed for the session; the user starts over to change form data.
 
@@ -177,7 +177,7 @@ by them. Their tooling is out of scope for this MVP.
 - Equipment categories: Smartphone, Laptop, Tablet, Headphones, Smartwatch, Other.
 - Purchase date cannot be in the future.
 - Decision outcomes are limited to: Approve, Reject, Escalate.
-- Language: English for all UI and policy documents.
+- Language: Polish for all UI and policy documents.
 - Target platform: modern desktop and mobile web browsers (responsive).
 
 ### External document / data references
@@ -283,7 +283,7 @@ flowchart TD
 - If the user asks something unrelated to their case or the complaint/return domain, the agent briefly declines and redirects to the case at hand.
 
 ### 11.7 Language and tone
-- English only. Tone is clear, respectful, and customer-facing: concise, non-technical, and empathetic for Reject/Escalate outcomes.
+- Polish only. Tone is clear, respectful, and customer-facing: concise, non-technical, and empathetic for Reject/Escalate outcomes.
 
 ---
 
