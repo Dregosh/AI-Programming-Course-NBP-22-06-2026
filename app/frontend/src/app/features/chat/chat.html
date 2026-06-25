@@ -1,1 +1,43 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Wynik analizy wniosku</h2>
+    <button mat-button (click)="startNewRequest()">Nowy wniosek</button>
+  </div>
+
+  <div *ngIf="decision" class="decision-summary">
+    <span class="outcome-badge" [ngClass]="getOutcomeClass(decision.outcome)">
+      {{ getOutcomeLabel(decision.outcome) }}
+    </span>
+    <div *ngIf="isPreliminary(decision.outcome)" class="preliminary-disclosure">
+      &#9888; Ta decyzja jest wstępna i podlega weryfikacji przez specjalistę przed uznaniem za ostateczną.
+    </div>
+  </div>
+
+  <div class="messages-list">
+    <div *ngFor="let msg of messages" class="message" [ngClass]="'message-' + msg.role.toLowerCase()">
+      <div *ngIf="msg.role === 'SYSTEM'" class="message-content system-message" [innerHTML]="safeHtml(msg.content)"></div>
+      <div *ngIf="msg.role === 'ASSISTANT'" class="message-content assistant-message">
+        <span [innerHTML]="safeHtml(msg.content)"></span>
+        <span *ngIf="msg.pending" class="typing-dots">...</span>
+      </div>
+      <div *ngIf="msg.role === 'USER'" class="message-content user-message">{{ msg.content }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="streamError" class="stream-error">
+    {{ streamError }}
+    <button mat-button (click)="retryLastMessage()">Ponów</button>
+  </div>
+
+  <mat-progress-bar *ngIf="isStreaming" mode="indeterminate"></mat-progress-bar>
+
+  <div class="composer">
+    <mat-form-field appearance="outline" class="composer-input">
+      <mat-label>Wiadomość</mat-label>
+      <input matInput [(ngModel)]="inputContent" (keyup.enter)="sendMessage()" [disabled]="isStreaming" placeholder="Zadaj pytanie dotyczące sprawy...">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="sendMessage()" [disabled]="!inputContent.trim() || isStreaming">
+      Wyślij
+    </button>
+  </div>
+</div>
