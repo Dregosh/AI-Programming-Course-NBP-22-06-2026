@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:3000}
+
+spring:
+  application:
+    name: backend
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+
+openrouter:
+  base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
+  text-model: ${OPENROUTER_TEXT_MODEL:${OPENROUTER_MODEL:openai/gpt-4o-mini}}
+  vision-model: ${OPENROUTER_VISION_MODEL:${OPENROUTER_MODEL:openai/gpt-4o-mini}}
+  api-key: ${OPENAI_API_KEY:${OPENROUTER_API_KEY:}}

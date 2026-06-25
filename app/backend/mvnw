@@ -1,0 +1,69 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.2
+# ----------------------------------------------------------------------------
+
+# If JAVA_HOME is set, use it; otherwise rely on PATH.
+if [ -n "$JAVA_HOME" ]; then
+  JAVACMD="$JAVA_HOME/bin/java"
+else
+  JAVACMD="java"
+fi
+
+MAVEN_WRAPPER_DIR=".mvn/wrapper"
+MAVEN_WRAPPER_JAR="$MAVEN_WRAPPER_DIR/maven-wrapper.jar"
+MAVEN_WRAPPER_PROPERTIES="$MAVEN_WRAPPER_DIR/maven-wrapper.properties"
+
+# Read properties file
+DISTRIBUTION_URL=$(grep distributionUrl "$MAVEN_WRAPPER_PROPERTIES" | cut -d= -f2-)
+WRAPPER_URL=$(grep wrapperUrl "$MAVEN_WRAPPER_PROPERTIES" | cut -d= -f2-)
+
+# Determine Maven home
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-$HOME/.m2/wrapper}"
+DIST_NAME=$(basename "$DISTRIBUTION_URL" .zip)
+MAVEN_HOME="$MAVEN_USER_HOME/dists/$DIST_NAME"
+
+# Download Maven if not present
+if [ ! -d "$MAVEN_HOME" ]; then
+  echo "Downloading Apache Maven..."
+  mkdir -p "$MAVEN_HOME"
+  TMP_ZIP="$MAVEN_HOME/maven.zip"
+  if command -v curl > /dev/null; then
+    curl -fsSL "$DISTRIBUTION_URL" -o "$TMP_ZIP"
+  elif command -v wget > /dev/null; then
+    wget -q "$DISTRIBUTION_URL" -O "$TMP_ZIP"
+  else
+    echo "ERROR: Neither curl nor wget is available."
+    exit 1
+  fi
+  unzip -q "$TMP_ZIP" -d "$MAVEN_HOME"
+  rm "$TMP_ZIP"
+fi
+
+# Find the actual mvn executable
+MVN_CMD=$(find "$MAVEN_HOME" -name "mvn" -type f | head -1)
+if [ -z "$MVN_CMD" ]; then
+  echo "ERROR: Could not find mvn in $MAVEN_HOME"
+  exit 1
+fi
+
+exec "$MVN_CMD" "$@"
