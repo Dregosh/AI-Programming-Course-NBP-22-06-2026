@@ -1,1 +1,62 @@
-<p>request-form works!</p>
+<div class="form-container">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Typ wniosku</mat-label>
+      <mat-select formControlName="requestType">
+        <mat-option value="RETURN">Zwrot</mat-option>
+        <mat-option value="COMPLAINT">Reklamacja</mat-option>
+      </mat-select>
+      <mat-error>Wybierz typ wniosku</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Kategoria sprzętu</mat-label>
+      <mat-select formControlName="category">
+        <mat-option value="SMARTPHONE">Smartfon</mat-option>
+        <mat-option value="LAPTOP">Laptop</mat-option>
+        <mat-option value="TABLET">Tablet</mat-option>
+        <mat-option value="HEADPHONES">Słuchawki</mat-option>
+        <mat-option value="SMARTWATCH">Smartwatch</mat-option>
+        <mat-option value="OTHER">Inne</mat-option>
+      </mat-select>
+      <mat-error>Wybierz kategorię</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Model urządzenia</mat-label>
+      <input matInput formControlName="modelName" placeholder="np. Samsung Galaxy S24">
+      <mat-error>Podaj model urządzenia</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data zakupu</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="purchaseDate" [max]="maxDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error>Podaj datę zakupu (nie może być przyszła)</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="form.get('requestType')?.value === 'COMPLAINT'">
+      <mat-label>Opis usterki</mat-label>
+      <textarea matInput formControlName="reason" rows="4" placeholder="Opisz problem z urządzeniem"></textarea>
+      <mat-error>Opis usterki jest wymagany dla reklamacji</mat-error>
+    </mat-form-field>
+
+    <div class="file-upload">
+      <label>Zdjęcie urządzenia *</label>
+      <input type="file" accept="image/jpeg,image/png,image/webp" (change)="onFileChange($event)" #fileInput>
+      <button type="button" mat-stroked-button (click)="fileInput.click()" *ngIf="!imageFile">Wybierz zdjęcie</button>
+      <div *ngIf="imageSrc" class="thumbnail-container">
+        <img [src]="imageSrc" alt="Podgląd" class="thumbnail">
+        <button type="button" mat-icon-button (click)="removeImage()">&#x2715;</button>
+      </div>
+      <mat-error *ngIf="imageError">{{imageError}}</mat-error>
+      <p class="hint">Akceptowane formaty: JPEG, PNG, WebP | Maks. 10 MB</p>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!canSubmit || isLoading">
+      Wyślij wniosek
+    </button>
+  </form>
+</div>
