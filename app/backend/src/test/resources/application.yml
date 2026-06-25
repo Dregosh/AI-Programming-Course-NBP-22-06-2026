@@ -1,0 +1,5 @@
+openrouter:
+  base-url: http://localhost:9999
+  text-model: openai/gpt-4o-mini
+  vision-model: openai/gpt-4o-mini
+  api-key: test-key-for-tests
