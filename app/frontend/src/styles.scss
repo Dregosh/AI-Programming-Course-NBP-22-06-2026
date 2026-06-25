@@ -109,3 +109,30 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
   color: var(--color-text-heading);
 }
+
+/* NBP Header */
+.nbp-header {
+  background: var(--color-brand-primary);
+  color: var(--color-text-on-dark);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.header-title {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
