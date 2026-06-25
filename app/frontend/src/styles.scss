@@ -1,0 +1,98 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+
+/* NBP Design Tokens */
+:root {
+  // Colors - brand
+  --color-brand-primary: #152E52;
+  --color-brand-accent: #BDAD7D;
+  --color-brand-link: #4A74B0;
+  --color-brand-error: #C0392B;
+  --color-brand-success: #2E7D32;
+  // Colors - background
+  --color-bg-default: #FFFFFF;
+  --color-bg-light: #F7F7F7;
+  --color-bg-muted: #C4C4C4;
+  --color-bg-dark: #152E52;
+  --color-bg-overlay: rgba(21, 46, 82, 0.6);
+  // Colors - border
+  --color-border-default: #BFCEDD;
+  --color-border-muted: #C4C4C4;
+  // Colors - text
+  --color-text-primary: #464646;
+  --color-text-heading: #152E52;
+  --color-text-secondary: #323232;
+  --color-text-muted: #717171;
+  --color-text-link: #4A74B0;
+  --color-text-on-dark: #FFFFFF;
+  // Typography
+  --font-heading: "Brygada 1918", Georgia, "Times New Roman", serif;
+  --font-body: "Libre Franklin", -apple-system, Arial, "Noto Sans", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-sm: 13px;
+  --font-size-base: 15.5px;
+  --font-size-md: 16px;
+  --font-size-lg: 19.6px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 33px;
+  // Spacing
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  // Border radius
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-full: 999px;
+  --radius-circle: 50%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+}
