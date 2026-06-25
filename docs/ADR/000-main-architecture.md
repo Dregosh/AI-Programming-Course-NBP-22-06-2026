@@ -224,13 +224,15 @@ via OpenRouter docs that the endpoint accepts `InputImage` (base64 data URL or r
 **Consequences:** (+) Simplest setup. (−) Two terminals; production packaging deferred.
 **Review trigger:** When a deployable artifact is needed.
 
-### 8.7 Target Java 21 despite locally installed JDK 25
-**Status:** Accepted **Date:** 2026-06-24
-**Context:** Stakeholder chose Java 21 + Spring Boot 3.5; the build machine currently has JDK 25, and Spring Boot 3.5 is not certified for Java 25.
-**Decision:** Configure the project for Java 21 (`<java.version>21</java.version>`). Install a JDK 21 (e.g. Temurin 21) for building/running; do not rely on JDK 25 for runtime certification.
-**Rejected alternatives:** Target Java 25 — rejected; outside Spring Boot 3.5 support matrix. Target Java 17 — not chosen by stakeholder.
-**Consequences:** (+) Supported, LTS, virtual threads available. (−) Requires installing JDK 21 locally; CI must pin 21.
+### 8.7 Target Java 21; attempt the installed JDK 25 first, fall back to JDK 21
+**Status:** Accepted **Date:** 2026-06-24 **Amended:** 2026-06-25
+**Context:** Stakeholder chose Java 21 + Spring Boot 3.5; the build machine currently has JDK 25, and Spring Boot 3.5 is not certified for Java 25. To avoid an unnecessary JDK install if the existing toolchain happens to work, the PoC orchestration plan (Decision 4) refined the build/run approach.
+**Decision:** Configure the project to **compile and target Java 21** (`<java.version>21</java.version>`) — this is fixed, regardless of which JDK runs the build. For the local build/run toolchain, **attempt the installed JDK 25 first**; if Spring Boot 3.5 fails to build or run on it (toolchain/bytecode/certification issue), install a JDK 21 (e.g. Temurin 21) and pin the build to it. CI pins JDK 21. Record which path was taken during scaffolding (step B0).
+**Rejected alternatives:** *Target* (compile to) Java 25 — rejected; outside Spring Boot 3.5 support matrix. Mandate a JDK 21 install up front before trying JDK 25 — relaxed to the try-25-first approach above to save an install when unneeded; JDK 21 remains the guaranteed fallback. Target Java 17 — not chosen by stakeholder.
+**Consequences:** (+) Supported, LTS bytecode target; virtual threads available; avoids a JDK install when JDK 25 can build/run Spring Boot 3.5. (−) JDK 25 is uncertified for Spring Boot 3.5, so the first attempt may fail and require the JDK 21 fallback; CI must still pin 21 for a certified build.
 **Review trigger:** When Spring Boot certifies Java 25, or NBP standardizes a different JDK.
+
+> **Amendment (2026-06-25):** The original decision required installing JDK 21 up front and not relying on JDK 25. It was amended to match PoC plan Decision 4: keep the compile target at Java 21, but try the already-installed JDK 25 for the local build/run first and fall back to installing JDK 21 only if Spring Boot 3.5 fails on JDK 25. The compile/bytecode target (Java 21) is unchanged.
 
 ---
 
