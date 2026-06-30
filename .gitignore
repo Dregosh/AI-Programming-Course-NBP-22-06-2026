@@ -45,3 +45,14 @@ Thumbs.db
 # Claude Code local settings & instructions (committed as example, uncomment to ignore)
 # .claude/settings.local.json
 # CLAUDE.local.md
+
+# Claude Code runtime artifacts (agent memory, worktrees, MCP config)
+.claude/agent-memory/
+.claude/worktrees/
+.ai/
+app/**/.claude/
+
+# QA / test artifacts
+*.png
+*.jpg
+test-device.png
