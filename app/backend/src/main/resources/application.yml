@@ -11,6 +11,11 @@ spring:
 
 openrouter:
   base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
-  text-model: ${OPENROUTER_TEXT_MODEL:${OPENROUTER_MODEL:openai/gpt-4o-mini}}
-  vision-model: ${OPENROUTER_VISION_MODEL:${OPENROUTER_MODEL:openai/gpt-4o-mini}}
+  text-model: ${OPENROUTER_TEXT_MODEL:${OPENROUTER_MODEL:openai/gpt-5.4-mini}}
+  vision-model: ${OPENROUTER_VISION_MODEL:${OPENROUTER_MODEL:openai/gpt-5.4-mini}}
   api-key: ${OPENAI_API_KEY:${OPENROUTER_API_KEY:}}
+
+logging:
+  level:
+    pl.nbp: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG

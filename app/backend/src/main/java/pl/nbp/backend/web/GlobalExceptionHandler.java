@@ -1,5 +1,7 @@
 package pl.nbp.backend.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,6 +19,8 @@ import pl.nbp.backend.web.dto.ApiErrorDto;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * Handles {@link SessionNotFoundException} → HTTP 404.
@@ -74,6 +78,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(LlmUpstreamException.class)
     public ResponseEntity<ApiErrorDto> handleLlmUpstream(LlmUpstreamException ex) {
+        log.error("LLM upstream error: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
                 .body(new ApiErrorDto(502, "Usługa AI niedostępna. Spróbuj ponownie.", null));
     }
@@ -98,6 +103,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorDto> handleGeneric(Exception ex) {
+        log.error("Unhandled exception: {}", ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiErrorDto(500, "Błąd wewnętrzny serwera.", null));
     }
