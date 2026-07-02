@@ -21,7 +21,7 @@ Notes from course for JSystem — AI dla programistów: od pomysłu do MVP
   - Vibe Coding definition: [X.com](https://x.com/karpathy/status/1886192184808149383?lang=en)
 - **Context rot & Context engineering**
 - **Async Codding Agents in Cloud & on Mobile**
-- CLI tools, Automation (Auto Review, Auto Mode), YOLO in container/cloud or local device (e.g. mac mini, Nvidia DGX Spark, AMD Strix Halo)
+- CLI tools, Automation (Auto Review, Auto Mode, Schedules/Rutines, Loops), YOLO in container/cloud or local device (e.g. mac mini, Nvidia DGX Spark, AMD Strix Halo)
 - Huge jump in quality of **Opus 4.5+**, GPT 5.4 and Gemini 3
 - **Open Source LLMs** are very close to top models:
   - GLM-5.2, Minimax M3, Kimi K2.6, DeepSeek v4 Pro - best OSS models are all from China
@@ -30,6 +30,12 @@ Notes from course for JSystem — AI dla programistów: od pomysłu do MVP
 - **Screenshots** as a better way to provide context for vision models (less tokens thanks to compression, more information thanks to formatting, colors, images, etc.)
   - [DeepSeek OCR research paper on context compression](https://arxiv.org/abs/2510.18234)
   - [Andrej Karpathy on X.com](https://x.com/karpathy/status/1980397031542989305?lang=en) "whether pixels are better inputs to LLMs than text. Maybe it makes more sense that all inputs to LLMs should only ever be images"
+- **Agents in the Cloud**
+  - Delegating work to agents running 24/7 in the cloud, on VPS, or Codex/Claude/GH Environments
+  - Case: [Levelsio runs agents on PROD VPS for >12 months](https://x.com/levelsio/status/2071162399864889705) + Theo's T3 thoughts about this
+- **HTML replacing Markdown** - as more readable and interactive documents get easier to generate
+  - You can start PRD, ADR or Plan with Markdown draft and ask agent to convert it to HTML
+  - Example on feature branch in `/docs/PRD-Product-Requirements-Document.html`
 - **AI disappointment**, broken promises, productivity drop, less fun and joy, frustration:
   - [AI Coding Sucks - YouTube](https://www.youtube.com/watch?v=0ZUkQF6boNg)
   - undeterministic nature of LLMs,
@@ -197,15 +203,39 @@ Notes from course for JSystem — AI dla programistów: od pomysłu do MVP
   - [How was DeepSeek-R1 built; For dummies : r/LLMDevs](https://www.reddit.com/r/LLMDevs/comments/1ibhpqw/how_was_deepseekr1_built_for_dummies/)
   - It changed a lot in AI, enabled Vibe Coding, Autonomus Agents
   - Should we always use reasoning models??? :)
-- Types of AI Assistance in programming:
+- **Types of AI Assistance** in programming (quick history):
   - **autocomplete** (starting from [Tabnine](https://www.tabnine.com/), GH Copilot, now Cursor Tab [based on Supermaven](https://supermaven.com/blog/cursor-announcement))
   - Chat / Research / Talk about your code
   - Inline Generation
   - Code Generation, planning, TODOs, Tools, MCPs, etc.
-  - Agentic workflows, task automation (local), not only codding, e.g.
-    - Goose
-    - Claude Cowork: [Introducing Cowork | Claude](https://claude.com/blog/cowork-research-preview)
-  - Agentic workflows in the cloud, CI/CD, Repo
+  - **Agentic workflows**, local task automation, loops, goals (not only codding):
+    - Local Agents for Business:
+      - Claude Cowork: [Introducing Cowork | Claude](https://claude.com/blog/cowork-research-preview)
+      - Codex for Everyday work mode:
+        - Settings > General > Work Mode > For coding | For everyday work
+        - Removes Git, code diff and features dedicated for developers
+        - [Codex for Work](https://chatgpt.com/codex/for-work/)
+        - [Codex Academy: How to Use Codex for Everyday Work](https://openai.com/academy/how-to-use-codex-for-everyday-work/)
+    - Batching / Scripting - run dozens to hundreds of sub-agents in parallel:
+      - Claude Workflow scripts: [Dynamic Workflows](https://code.claude.com/docs/en/workflows)
+      - Codex CSV file batching: [Codex CSV Batch with Subagents](https://developers.openai.com/codex/subagents#process-csv-batches-with-subagents-experimental)
+    - Hooks - trigger actions in deterministic way on events:
+      - [Claude - Hooks](https://code.claude.com/docs/en/hooks-guide)
+      - [Codex - Hooks](https://developers.openai.com/codex/hooks)
+    - Goals / Loops:
+      - [Claude - Goals](https://code.claude.com/docs/en/goal)
+      - [Codex - Goals](https://developers.openai.com/codex/use-cases/follow-goals)
+    - Schedules / Cron jobs:
+      - [Claude - Scheduled Tasks](https://code.claude.com/docs/en/scheduled-tasks)
+      - [Codex - Automations](https://developers.openai.com/codex/app/automations)
+    - [Goose Recipes](https://goose-docs.ai/docs/guides/recipes/)
+  - **Cloud Automation**, CI/CD, delegation from mobile:
+    - Remote Environments
+    - [Routines](https://code.claude.com/docs/en/routines)
+    - Remote control of local agent
+      - [Claude Dispatch](https://claude.com/blog/dispatch-and-computer-use)
+      - [Claude Remote](https://code.claude.com/docs/en/remote-control)
+      - [Codex Mobile](https://chatgpt.com/codex/mobile/)
 - **Prompting**
   - Polish language in prompting: [AI mówi po polsku – nasz język zdeklasował angielski w najnowszym rankingu (cryps.pl)](https://cryps.pl/sztuczna-inteligencja-mowi-po-polsku-nasz-jezyk-zdeklasowal-angielski-w-najnowszym-rankingu/)
   - Context vs Prompt Engineering: [Effective Context Engineering for AI Agents – Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
@@ -408,6 +438,21 @@ Custom project file (or many nested files) with instructions and description of 
   - [spring-ai-mcp-server-patterns - Spring AI MCP server patterns](https://skills.sh/giuseppe-trisciuoglio/developer-kit/spring-ai-mcp-server-patterns)
   - [langchain4j-spring-boot-integration - LangChain for Java with Spring Boot integration](https://skills.sh/giuseppe-trisciuoglio/developer-kit/langchain4j-spring-boot-integration)
 
+### Custom Slash Commands / Prompts
+
+**Custom slash commands** (in Claude Code) or **Custom Prompts** (in Codex) are simple reusable prompts (Markdown files) you invoke manually via `/command-name` (optionally with an extra message/argument). They are the lightweight sibling of Skills — no metadata, no auto-triggering. You write the prompt once and reuse it on demand.
+
+- **What they are:** Markdown files stored in `.claude/commands/` (Claude Code CLI, Claude Code Desktop app, or Agent SDK). Each file becomes a `/`-command. You can optionally pass `$ARGUMENTS` to inject a custom message at invocation time.
+- **When to use Commands vs Skills:**
+  - Use **Custom Commands** for *simpler, reusable prompts* you want to trigger *explicitly* (e.g. a commit-message generator, a code-review checklist, a fixed prompt template). Lower overhead, no triggering heuristics.
+  - Use **Skills** when the agent should *auto-detect* context and pull instructions in (via the `description` field), when you need to split knowledge/instructions in multiple files, or when you want bundled assets or scripts.
+- **Grouping (optional):** Placing commands in a subfolder creates a `group:name` namespace. E.g. `.claude/commands/git/commit.md` is invoked as `/git:commit`.
+- Docs in Claude Agent SDK (same mechanism for Claude Code CLI & Desktop app): [Creating custom slash commands](https://code.claude.com/docs/en/agent-sdk/slash-commands#creating-custom-slash-commands)
+- Docs in Codex (DEPRECATED, use skills instead): [Custom Prompts](https://developers.openai.com/codex/custom-prompts)
+- Example commands in this repo: [`/.claude/commands/`](.claude/commands/) — grouped under [`git/`](.claude/commands/git):
+  - [`git/commit.md`](.claude/commands/git/commit.md) → invoked as `/git:commit`
+  - [`git/diff.md`](.claude/commands/git/diff.md) → invoked as `/git:diff`
+
 ### Tools
 
 - built-in Agent tools (provided by IDE / CLI you use):
@@ -515,7 +560,10 @@ Main agent can delegate tasks to sub-agents (often specialized), to focus on orc
   - Copilot: [About custom agents - GitHub Docs](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-custom-agents)
   - OpenCode: [Agents | OpenCode](https://opencode.ai/docs/agents/)
   - Goose: [Subagents | goose](https://block.github.io/goose/docs/guides/subagents/)
-- Parallel Agents / **Git Worktrees**:
+- Nested Sub-Agents (sub-agents spawned by sub-agents):
+  - [Claude Code - Nested Sub-Agents](https://code.claude.com/docs/en/sub-agents#spawn-nested-subagents) (max depth is 5, not configurable)
+  - [Codex Subagent settings](https://developers.openai.com/codex/subagents#global-settings) - `agent.max_threads` (default: 6 - maximum number of concurrent agents) & `agent.max_depth` (default: 1 - only main agent can spawn sub-agents, set to 2+ to allow nested sub-agents)
+- **Git Worktrees** for Parallel Agents in same repository:
   - What is a Git Worktree? [Git Worktree Docs](https://git-scm.com/docs/git-worktree)
   - Claude: [Run parallel Claude code sessions with Git worktrees | Claude Docs](https://code.claude.com/docs/en/common-workflows#run-parallel-claude-code-sessions-with-git-worktrees)
   - Codex: [Worktrees | OpenAI Codex Docs](https://developers.openai.com/codex/app/worktrees/)
@@ -589,7 +637,7 @@ Main agent can delegate tasks to sub-agents (often specialized), to focus on orc
 
 - OpenAI Codex Web
   - [Codex Web](https://chatgpt.com/codex)
-  - NEW! (macOS only now) [Codex App](https://openai.com/pl-PL/codex/)
+  - NEW! (macOS only now) [Codex App](https://openai.com/codex/)
   - [Docs Codex Web](https://developers.openai.com/codex/cloud/)
   - Blog [Introducing Codex Web](https://openai.com/pl-PL/index/introducing-codex/)
 - [Claude Code Web](https://claude.ai/code) (also in mobile app!)
